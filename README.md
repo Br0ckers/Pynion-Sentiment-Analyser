@@ -7,3 +7,4 @@
 2. source env/bin/activate
 3. pip3 install flask
 4. to run > python app.py
+then carryu on coding
