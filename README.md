@@ -6,5 +6,7 @@
 1. virtualenv -p /usr/local/bin/python3 env
 2. source env/bin/activate
 3. pip3 install flask
-4. to run > python app.py
+4. pip3 install wtforms
+5. to run > python app.py
+
 then carryu on coding
