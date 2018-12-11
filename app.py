@@ -29,8 +29,13 @@ def index():
     return render_template(
         'index.html', form=form)
 
-@app.route("/test")
+@app.route("/result")
 def test():
+    return render_template(
+        'result.html')
+
+@app.route("/test")
+def test2():
     return render_template(
         'test.html')
 
