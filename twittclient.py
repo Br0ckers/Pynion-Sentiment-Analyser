@@ -7,10 +7,10 @@ from textblob import TextBlob
 
 class TwitterClient(object):
     def __init__(self):
-        consumer_key = 'y5ehY2uZ9OAtv9vgJj0R3Zc36'
-        consumer_secret = 'eZw7cZWAKDfEhM5XUTjv2sAPAWc1vrYY46xQZzgj3Fg1e0RaBC'
-        access_token = '1072819796817920000-FU36xH9CQtgLoFLjDShbxI1JS36sVc'
-        access_token_secret = '1irwaWur4quGhNGYjtt9BjHAWhBiX0moAn6QD7Sq6BM1u'
+        consumer_key = 'data witheld'
+        consumer_secret = 'data witheld'
+        access_token = 'data witheld'
+        access_token_secret = 'data witheld'
     
         # attempt authentication 
         try: 
