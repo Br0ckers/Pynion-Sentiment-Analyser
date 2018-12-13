@@ -4,11 +4,10 @@ venv/
 
 *.pyc
 __pycache__/
+.pytest_cache/
 
 instance/
 
-
-.pytest_cache/
 .coverage
 /coverage
 htmlcov/

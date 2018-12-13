@@ -2,12 +2,9 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath('..'))
 
-<<<<<<< HEAD
 #from Pynion-Sentiment-Analyser import twittclient
 import twittclient
-=======
-from mypkg import polarity
->>>>>>> master
+
 
 # from mypkg import polarity
 # from mypkg import twitter_req
