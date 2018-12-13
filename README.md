@@ -12,12 +12,19 @@
 7. python -m textblob.download_corpora
   Note: If you encounter CERTIFICATE_VERIFY_FAILED error then
   from root of your terminal go to 'Applications --> Python 3.7 directory' using a new terminal window
-  ``` 
+  ```
   /$ cd cd Applications/Python\ 3.7/
   /Applications/Python 3.7 $ sudo -H ./Install\ Certificates.command
   and return back to the terminal where your step 7 failed and re-issue it.
   ```
 8. to run > python app.py
+
+
+For database
+
+1. pip install flask-sqlalchemy
+2. pip install flask_migrate
+
 
 For testing using pytest
 -------------------------

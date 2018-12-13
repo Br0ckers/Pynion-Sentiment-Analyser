@@ -1,14 +1,7 @@
 #! /usr/bin/env python
-
 from flask import request, jsonify, Flask, flash, redirect, render_template, session, abort, url_for
-from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
-import twittclient
-
-DEBUG = True
-
-app = Flask(__name__)
-app.config.from_object(__name__)
-app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
+from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField 
+from app import app,twittclient
 
 class ReusableForm(Form):
     name = TextField('Subject:', validators=[validators.required()])
