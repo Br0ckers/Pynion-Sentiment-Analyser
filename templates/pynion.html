@@ -17,6 +17,10 @@
 <body>
 
   <span class="first">
+           <p> Below analysis uses NLTK based textblob library to obtain the sentiments from tweets.
+            The code behind uses tweepy twitter API to authenticate to twitter using the dev API token.
+            Every tweet is parsed and cleaned, links and special char get removed before being passed to 
+            the textblob library that evaluates the sentiment based on Positive, Negative & Neutral features created</p>
 			Search Results:
   </span>
 
@@ -54,7 +58,7 @@
           </li>
         {% endfor %}
         <li>Negative Tweets:</li>
-        {% for twee2 in session['ptweet'] %}
+        {% for twee2 in session['ntweet'] %}
           <li>
               <div class="bubble-container">
                 <div class="bubble">
