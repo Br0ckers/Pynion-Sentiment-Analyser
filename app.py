@@ -28,7 +28,7 @@ def index():
         getOp(subject)
         return redirect('pynion')
     else:
-        flash('Enter your message subject. ')
+        flash('To see what the twitterverse current opinion is, on a topic, enter it below')
         return render_template('index.html', form=form)
     
 def getOp(subject):
@@ -83,4 +83,4 @@ def test2():
         'test.html')
 
 if __name__ == "__main__":
-    app.run()
+    app.run('0.0.0.0',5000)

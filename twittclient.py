@@ -2,15 +2,16 @@
 
 import re
 import tweepy
+import os
 from tweepy import OAuthHandler
 from textblob import TextBlob
 
 class TwitterClient(object):
     def __init__(self):
-        consumer_key = 'data witheld'
-        consumer_secret = 'data witheld'
-        access_token = 'data witheld'
-        access_token_secret = 'data witheld'
+        consumer_key = os.environ.get('API_KEY')
+        consumer_secret = os.environ.get('API_SECRET_KEY')
+        access_token = os.environ.get('ACCESS_TOKEN')
+        access_token_secret = os.environ.get('ACCESS_TOKEN_SECRET')
     
         # attempt authentication 
         try: 
