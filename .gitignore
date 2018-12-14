@@ -16,4 +16,5 @@ dist/
 build/
 *.egg-info/
 
+# Ignore DB
 app.db
