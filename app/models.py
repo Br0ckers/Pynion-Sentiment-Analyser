@@ -7,5 +7,7 @@ class Query(db.Model):
     count = db.Column(db.Integer)
     dateSearched = db.Column(db.DateTime, default = datetime.utcnow)
 
-def __repr__(self):
-    return '<Searched for {}>'.format(self.searchword)
+    # def __repr__(self):
+    #     return '<Searched for {}>'.format(self.searchword)
+    def __repr__(self):
+        return f"Query('{self.searchword}', '{self.count}')"

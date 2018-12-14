@@ -1,7 +1,7 @@
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+# from flask_migrate import Migrate
 from flask import request, jsonify, Flask, flash, redirect, render_template, session, abort, url_for
 
 #from models import Query
