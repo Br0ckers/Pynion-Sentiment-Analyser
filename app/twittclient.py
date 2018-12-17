@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-
 import re
 import tweepy
 import os
@@ -52,7 +51,7 @@ class TwitterClient(object):
             '''
             # empty list to store parsed tweets
             tweets = []
-
+            # print("Get_tweets called :",self,query,count)
             try:
                 # call twitter api to fetch tweets
                 fetched_tweets = self.api.search(q = query, count = count)

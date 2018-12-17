@@ -11,7 +11,7 @@
   <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
   <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-
+  
 </head>
 
 <body>
@@ -24,50 +24,76 @@
 			Search Results:
   </span>
 
+  <ul class="timeline", style="list-style: none;">
+    <div class="bubble-container">
+    <b>Sentiment(in Percentage)</b>
+    <div class="bubble">
+        <li>
+        Positive: {{ session['pos'] }} %
+        </li>
+        <li>
+        Negative: {{ session['neg'] }} %
+        </li>
+        <li>
+        Neutral{{ session['nue'] }} %
+        </li>
+    </div>
+    <div id="piechart" class="bubble2">
+    </div>
+    </div>
+    <li>
+     <div class="bubble-container">
+       Positive Tweets:
+     </div>
+    </li>
+    {% for twee1 in session['ptweet'] %}
+        <li>
+            <div class="bubble-container">
+            <div class="bubble">
+                {{ twee1 }}
+            </div>
+            </div>
+        </li>
+    {% endfor %}
+    <li>
+     <div class="bubble-container">
+       Negative Tweets:
+     </div>
+    </li>
+    {% for twee2 in session['ntweet'] %}
+        <li>
+            <div class="bubble-container">
+            <div class="bubble">
+                {{ twee2 }}
+            </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
-      <ul class="timeline", style="list-style: none;">
-     	    <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ session['pos'] }}
-                </div>
-              </div>
-          </li>
-          <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ session['neg'] }}
-                </div>
-              </div>
-          </li>
-          <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ session['nue'] }}
-                </div>
-              </div>
-          </li>
-        <li>Positive Tweets:</li>
-        {% for twee1 in session['ptweet'] %}
-          <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ twee1 }}
-                </div>
-              </div>
-          </li>
-        {% endfor %}
-        <li>Negative Tweets:</li>
-        {% for twee2 in session['ntweet'] %}
-          <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ twee2 }}
-                </div>
-              </div>
-          </li>
-        {% endfor %}
-      </ul>
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Sentiment', 'Percentage'],
+  ['Positive', {{ session['pos'] }}],
+  ['Negative', {{ session['neg'] }}],
+  ['Neutral', {{ session['nue'] }}]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'Twitter Sentiments', 'width':500, 'height':350};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+
 </body>
 
 </html>
