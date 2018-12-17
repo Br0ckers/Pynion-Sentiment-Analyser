@@ -25,6 +25,20 @@ For database
 1. pip install flask-sqlalchemy
 2. pip install flask_migrate
 
+# Google Speech to Text Regonition API
+
+- As an added feature to sentinent analyser we added voice search capability using an existing google API.
+
+- Setting up the enviroment for this tool,
+
+1. brew install portaudio
+2. pip install pyaudio
+3. pip install --upgrade google-cloud-speech
+4. Create a google cloud account and create a account key in JSON format.
+5. export GOOGLE_APPLICATION_CREDENTIALS="/PATH/ENV/KEY.json"  (Ensure this path is in .gitignore!!!)
+6. Use voice_reg.py file enclosed.
+7. Note for single word regonition please add "single_utterance=True," to voice_reg.py StreamingReconitionConfig fields.
+
 
 For testing using pytest
 -------------------------
