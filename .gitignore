@@ -4,7 +4,11 @@ venv/
 
 *.pyc
 __pycache__/
+<<<<<<< HEAD
 .pytest_cache/
+=======
+/__pycache__
+>>>>>>> part 2 13th Dec
 
 instance/
 

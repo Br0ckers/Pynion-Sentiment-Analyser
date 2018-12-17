@@ -21,7 +21,6 @@ def index():
 # Save the comment here.
         # flash('Your Subject is ' + subject)
         #print("adding to database")
-
         getOp(subject)
         return redirect('pynion')
     else:
@@ -81,9 +80,6 @@ def test2():
 
 @app.route("/history")
 def returnHistory():
-    # res = Pynionquery.query.all()
-    # print("Fetching history {}".format(res))
-    # session['history'] = tuple(res)
     return render_template(
         'history.html', history = Pynionquery.query.all())
 
