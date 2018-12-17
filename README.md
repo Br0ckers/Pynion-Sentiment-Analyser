@@ -62,3 +62,8 @@ Initial Look
 -------------
 ![Initial Screen](Page1.png)
 ![Results Screen](Results.png)
+
+
+Word cloud
+
+1. pip install wordcloud

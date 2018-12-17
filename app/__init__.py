@@ -4,6 +4,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask import request, jsonify, Flask, flash, redirect, render_template, session, abort, url_for
 
+import numpy as np
+import pandas as pd
+from os import path
+from PIL import Image
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+
+import matplotlib.pyplot as plt
+% matplotlib inline
 #from models import Query
 
 app = Flask(__name__)
