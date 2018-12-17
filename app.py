@@ -76,4 +76,4 @@ def test2():
         'test.html')
 
 if __name__ == "__main__":
-    app.run('0.0.0.0',5000)
+    app.run('0.0.0.0',5000,ssl_context=('/Users/phipax/cert/pyn.crt', '/Users/phipax/cert/pyn.key'))
