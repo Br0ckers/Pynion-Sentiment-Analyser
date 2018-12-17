@@ -2,6 +2,7 @@
 from flask import request, jsonify, Flask, flash, redirect, render_template, session, abort, url_for
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from app import app,twittclient
+from voice_reg import *
 
 class ReusableForm(Form):
     name = TextField('Subject:', validators=[validators.required()])
@@ -70,6 +71,12 @@ def test():
     return render_template(
         'result.html')
 
+@app.route("/vr")
+def vr():
+    vc = main()
+    return render_template(
+        'vr.html', var=vc )
+
 @app.route("/test")
 def test2():
     return render_template(
@@ -86,4 +93,5 @@ def add_header(response):
     return response
 
 if __name__ == "__main__":
-    app.run('0.0.0.0',5000,debug=True)
+
+    app.run('0.0.0.0',5000,ssl_context=('/Users/phipax/cert/pyn.crt', '/Users/phipax/cert/pyn.key'))

@@ -15,3 +15,4 @@ def sentiWordCloud(tweetarray,subject):
     #wordcloud.to_file("app/img/word_cloud_{}.png".format(subject))
     wordcloud.to_file("app/static/word_cloud.png")
     print("saving the file")
+
