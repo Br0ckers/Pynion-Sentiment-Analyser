@@ -20,6 +20,8 @@ def index():
             subject=request.form['name']
             print (subject)
             if form.validate():
+                if subject == "":
+                    return redirect('/')
                 # possibly add if to return to index if subject is blank!
         # Save the comment here.
                 # flash('Your Subject is ' + subject)
