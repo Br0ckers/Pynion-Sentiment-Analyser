@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 from flask import request, jsonify, Flask, flash, redirect, render_template, session, abort, url_for
-from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField 
+from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from app import app,twittclient
 
 class ReusableForm(Form):
