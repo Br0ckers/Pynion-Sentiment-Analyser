@@ -2,6 +2,7 @@
 
 <!doctype html>
 <html lang="en">
+<meta http-equiv="refresh" content="5" >
 
 <head>
   <meta charset="UTF-8">
@@ -11,7 +12,7 @@
   <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
   <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-  
+
 </head>
 
 <body>
@@ -94,6 +95,57 @@ function drawChart() {
 }
 </script>
 
+  <div class="bubble-container">
+    <div class="bubble">
+      <img src="/static/word_cloud.png" width=50%>
+    </div>
+  </div>
+
+
+
+      <ul class="timeline", style="list-style: none;">
+     	    <li>
+              <div class="bubble-container">
+                <div class="bubble">
+                    {{ session['pos'] }}
+                </div>
+              </div>
+          </li>
+          <li>
+              <div class="bubble-container">
+                <div class="bubble">
+                    {{ session['neg'] }}
+                </div>
+              </div>
+          </li>
+          <li>
+              <div class="bubble-container">
+                <div class="bubble">
+                    {{ session['nue'] }}
+                </div>
+              </div>
+          </li>
+        <li>Positive Tweets:</li>
+        {% for twee1 in session['ptweet'] %}
+          <li>
+              <div class="bubble-container">
+                <div class="bubble">
+                    {{ twee1 }}
+                </div>
+              </div>
+          </li>
+        {% endfor %}
+        <li>Negative Tweets:</li>
+        {% for twee2 in session['ntweet'] %}
+          <li>
+              <div class="bubble-container">
+                <div class="bubble">
+                    {{ twee2 }}
+                </div>
+              </div>
+          </li>
+        {% endfor %}
+      </ul>
 </body>
 
 </html>

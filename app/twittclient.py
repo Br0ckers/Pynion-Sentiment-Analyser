@@ -4,14 +4,19 @@ import tweepy
 import os
 from tweepy import OAuthHandler
 from textblob import TextBlob
+from app import sentiwordcloud
 
 class TwitterClient(object):
     def __init__(self):
-        consumer_key = os.environ.get('API_KEY')
-        consumer_secret = os.environ.get('API_SECRET_KEY')
-        access_token = os.environ.get('ACCESS_TOKEN')
-        access_token_secret = os.environ.get('ACCESS_TOKEN_SECRET')
-
+        consumer_key = "E1xqzPEiqjlduYikpKjAkNS0w" #os.environ.get('API_KEY')
+        print("consumer_key {}".format(consumer_key))
+        consumer_secret = "fJQVXAJNwR44wUUKrmi8Wf12O4wQ0YTmauEGSf3RITj5FzSVWh"#os.environ.get('API_SECRET_KEY')
+        print("consumer_secret {}".format(consumer_secret))
+        access_token = "1074639447310954496-jTBLObfNnTb1JZrGBUYvPRikxLIyrU"#os.environ.get('ACCESS_TOKEN')
+        print("access_token {}".format(access_token))
+        access_token_secret = "2XZHahU34IwsL76KYX53nuKe3a74xoGIr9WgTIixf1qQF"#os.environ.get('ACCESS_TOKEN_SECRET')
+        print("access_token_secret {}".format(access_token_secret))
+        #print(api.VerifyCredentials())
         # attempt authentication
         try:
             # create OAuthHandler object
@@ -36,7 +41,7 @@ class TwitterClient(object):
         using textblob's sentiment method
         '''
         # create TextBlob object of passed tweet text
-        analysis = TextBlob(self.clean_tweet(tweet))
+        analysis = TextBlob(tweet)
         # set sentiment
         if analysis.sentiment.polarity > 0:
             return 'positive'
@@ -53,18 +58,30 @@ class TwitterClient(object):
             tweets = []
             # print("Get_tweets called :",self,query,count)
             try:
+                print ("getting tweets")
                 # call twitter api to fetch tweets
                 fetched_tweets = self.api.search(q = query, count = count)
-
                 # parsing tweets one by one
+                print ("got the tweets")
+                #print (fetched_tweets)
+
+                cleanStrArray = []
+                cleanstr = ""
                 for tweet in fetched_tweets:
                     # empty dictionary to store required params of a tweet
                     parsed_tweet = {}
 
                     # saving text of tweet
                     parsed_tweet['text'] = tweet.text
+                    print ("tweet text {}".format(tweet.text))
+
+                    cleanstr = self.clean_tweet(tweet.text)
+                    print("clean str {}".format(cleanstr))
+                    cleanStrArray.append(cleanstr)
+                    print ("clean array is {}".format(cleanStrArray))
                     # saving sentiment of tweet
-                    parsed_tweet['sentiment'] = self.get_tweet_sentiment(tweet.text)
+                    parsed_tweet['sentiment'] = self.get_tweet_sentiment(cleanstr)
+                    print("parsed str {}".format(parsed_tweet['sentiment']))
 
                     # appending parsed tweet to tweets list
                     if tweet.retweet_count > 0:
@@ -75,6 +92,7 @@ class TwitterClient(object):
                         tweets.append(parsed_tweet)
 
                 # return parsed tweets
+                sentiwordcloud.sentiWordCloud(cleanStrArray,query)
                 return tweets
 
             except tweepy.TweepError as e:
