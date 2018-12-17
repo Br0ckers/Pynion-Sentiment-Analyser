@@ -68,12 +68,12 @@ Twitter API Instructions
 ```
   export API_KEY=<YOUR API KEY WITHOUT ANYQUOTES OR BRACKETS> && export API_SECRET_KEY=<YOUR API SECRET KEY WITHOUT ANYQUOTES OR BRACKETS> && export ACCESS_TOKEN=<YOUR ACCESS TOKEN WITHOUT ANYQUOTES OR BRACKETS> && export ACCESS_TOKEN_SECRET=<YOUR ACCESS TOKEN SECRET WITHOUT ANYQUOTES OR BRACKETS>
 
-  or to make it permanent edit your .bash_profile file found in your home directory 
+  or to make it permanent edit your .bash_profile file found in your home directory
 
   $ cd ~
   $ ls -la
   # find the .bash_profile and edit it
-  # using an editor enter 
+  # using an editor enter
   export API_KEY=
   export API_SECRET_KEY=
   ...
@@ -93,12 +93,13 @@ Initial Look
 Word cloud
 
 1. pip install wordcloud
+2. pip install pandas
+3. pip install numpy
+4. pip install mapplotlib
+5. pip install pillow
+
 
 To fix the matplotlib error
-```
 If you used pip to install:
-
 1.Create ~/.matplotlib/matplotlibrc
-
 Add "backend: TkAgg" (without the quotations) to the file.
-```
