@@ -1,5 +1,4 @@
 
-
 <!doctype html>
 <html lang="en">
 <meta http-equiv="refresh" content="5" >
@@ -71,6 +70,13 @@
         </li>
     {% endfor %}
 </ul>
+
+<div class="bubble-container">
+    <div class="bubble">
+      <img src="/static/word_cloud.png" width=50%>
+    </div>
+</div>
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 // Load google charts
@@ -94,66 +100,5 @@ function drawChart() {
   chart.draw(data, options);
 }
 </script>
-
-  <div class="bubble-container">
-    <div class="bubble">
-      <img src="/static/word_cloud.png" width=50%>
-    </div>
-  </div>
-
-
-
-  <div class="bubble-container">
-    <div class="bubble">
-      <img src="/static/word_cloud.png" width=50%>
-    </div>
-  </div>
-
-
-
-      <ul class="timeline", style="list-style: none;">
-     	    <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ session['pos'] }}
-                </div>
-              </div>
-          </li>
-          <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ session['neg'] }}
-                </div>
-              </div>
-          </li>
-          <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ session['nue'] }}
-                </div>
-              </div>
-          </li>
-        <li>Positive Tweets:</li>
-        {% for twee1 in session['ptweet'] %}
-          <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ twee1 }}
-                </div>
-              </div>
-          </li>
-        {% endfor %}
-        <li>Negative Tweets:</li>
-        {% for twee2 in session['ntweet'] %}
-          <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ twee2 }}
-                </div>
-              </div>
-          </li>
-        {% endfor %}
-      </ul>
 </body>
-
 </html>
