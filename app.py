@@ -2,6 +2,8 @@
 from flask import request, jsonify, Flask, flash, redirect, render_template, session, abort, url_for
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from app import app,twittclient
+from app import db_session
+from app.models import Pynionquery
 
 class ReusableForm(Form):
     name = TextField('Subject:', validators=[validators.required()])
@@ -18,6 +20,8 @@ def index():
     if form.validate():
 # Save the comment here.
         # flash('Your Subject is ' + subject)
+        #print("adding to database")
+
         getOp(subject)
         return redirect('pynion')
     else:
@@ -75,6 +79,14 @@ def test2():
     return render_template(
         'test.html')
 
+@app.route("/history")
+def returnHistory():
+    # res = Pynionquery.query.all()
+    # print("Fetching history {}".format(res))
+    # session['history'] = tuple(res)
+    return render_template(
+        'history.html', history = Pynionquery.query.all())
+
 @app.after_request
 def add_header(response):
     """
@@ -84,6 +96,10 @@ def add_header(response):
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
 
 if __name__ == "__main__":
     app.run('0.0.0.0',5000,debug=True)
