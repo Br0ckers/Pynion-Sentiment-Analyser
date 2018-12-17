@@ -67,3 +67,7 @@ Initial Look
 Word cloud
 
 1. pip install wordcloud
+2. pip install pandas
+3. pip install numpy
+4. pip install mapplotlib
+5. pip install pillow

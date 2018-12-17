@@ -10,8 +10,6 @@ from os import path
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
-import matplotlib.pyplot as plt
-% matplotlib inline
 #from models import Query
 
 app = Flask(__name__)

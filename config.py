@@ -12,3 +12,5 @@ class Config(object):
     CSRF_ENABLED     = True
     CSRF_SESSION_KEY = "secret"
     SECRET_KEY = "secret"
+    DEBUG = True
+    SQLALCHEMY_ECHO = True
