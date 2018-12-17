@@ -2,6 +2,7 @@
 from flask import request, jsonify, Flask, flash, redirect, render_template, session, abort, url_for
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from app import app,twittclient
+from voice_reg import *
 
 class ReusableForm(Form):
     name = TextField('Subject:', validators=[validators.required()])
@@ -69,6 +70,12 @@ def pynion_matter():
 def test():
     return render_template(
         'result.html')
+
+@app.route("/vr")
+def vr():
+    vc = main()
+    return render_template(
+        'vr.html', var=vc )
 
 @app.route("/test")
 def test2():

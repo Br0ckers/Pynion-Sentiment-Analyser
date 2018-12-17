@@ -117,15 +117,13 @@ def listen_print_loop(responses):
         overwrite_chars = ' ' * (num_chars_printed - len(transcript))
 
         if not result.is_final:
-             # print("Result: " + transcript + overwrite_chars + '\r')
-            # sys.stdout.write(transcript + overwrite_chars + '\r')
-            # sys.stdout.flush()
+            sys.stdout.write(transcript + overwrite_chars + '\r')
+            sys.stdout.flush()
 
             num_chars_printed = len(transcript)
 
         else:
-            magic = ("Result: " + transcript + overwrite_chars)
-            return magic
+            print(transcript + overwrite_chars)
 
             # Exit recognition if any of the transcribed phrases could be
             # one of our keywords.
@@ -145,10 +143,8 @@ def main():
     config = types.RecognitionConfig(
         encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
         sample_rate_hertz=RATE,
-        max_alternatives=0,
         language_code=language_code)
     streaming_config = types.StreamingRecognitionConfig(
-        single_utterance=True,
         config=config,
         interim_results=True)
 
@@ -160,10 +156,7 @@ def main():
         responses = client.streaming_recognize(streaming_config, requests)
 
         # Now, put the transcription responses to use.
-        output = listen_print_loop(responses)
-        # listen_print_loop(responses)
-        # add back in after tested
-        return output
+        listen_print_loop(responses)
 
 
 if __name__ == '__main__':
