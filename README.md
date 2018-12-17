@@ -97,8 +97,11 @@ Word cloud
 3. pip install numpy
 4. pip install mapplotlib
 5. pip install pillow
+<<<<<<< HEAD
 
 To fix the matplotlib error
 If you used pip to install:
 1.Create ~/.matplotlib/matplotlibrc
 Add "backend: TkAgg" (without the quotations) to the file.
+=======
+>>>>>>> 095cb8b7f0f19a14e64746082e4633682d93287c
