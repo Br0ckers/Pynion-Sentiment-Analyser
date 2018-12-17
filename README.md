@@ -35,7 +35,7 @@ For database
 2. pip install pyaudio
 3. pip install --upgrade google-cloud-speech
 4. Create a google cloud account and create a account key in JSON format.
-5. export GOOGLE_APPLICATION_CREDENTIALS="/PATH/ENV/KEY.json"  (Ensure this path is in .gitignore!!!)
+5. export GOOGLE_APPLICATION_CREDENTIALS="/Users/phipax/Projects/Pynion-Sentiment-Analyser/env/KEY.json"  (Ensure this path is in .gitignore!!!)
 6. Use voice_reg.py file enclosed.
 7. Note for single word regonition please add "single_utterance=True," to voice_reg.py StreamingReconitionConfig fields.
 
@@ -68,6 +68,18 @@ Twitter API Instructions
 ```
   export API_KEY=<YOUR API KEY WITHOUT ANYQUOTES OR BRACKETS> && export API_SECRET_KEY=<YOUR API SECRET KEY WITHOUT ANYQUOTES OR BRACKETS> && export ACCESS_TOKEN=<YOUR ACCESS TOKEN WITHOUT ANYQUOTES OR BRACKETS> && export ACCESS_TOKEN_SECRET=<YOUR ACCESS TOKEN SECRET WITHOUT ANYQUOTES OR BRACKETS>
 
+  or to make it permanent edit your .bash_profile file found in your home directory 
+
+  $ cd ~
+  $ ls -la
+  # find the .bash_profile and edit it
+  # using an editor enter 
+  export API_KEY=
+  export API_SECRET_KEY=
+  ...
+
+  # close all terminals and start a new one and do  printenv to check
+
 ```
 6. In the terminal type ```printenv``` to see if the keys you created are listed. if not you have not created them under your virtualenv
 7. The app is available to be accessed within the network hence if you run the app get your ip address from terminal and access it like ```ifconfig | grep inet``` you will find your ip next next to netmask that you can share with colleagues on the same network.
@@ -81,3 +93,12 @@ Initial Look
 Word cloud
 
 1. pip install wordcloud
+
+To fix the matplotlib error
+```
+If you used pip to install:
+
+1.Create ~/.matplotlib/matplotlibrc
+
+Add "backend: TkAgg" (without the quotations) to the file.
+```

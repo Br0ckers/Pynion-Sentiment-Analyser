@@ -11,7 +11,7 @@ from PIL import Image
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
 import matplotlib.pyplot as plt
-% matplotlib inline
+# %matplotlib inline
 #from models import Query
 
 app = Flask(__name__)
@@ -24,3 +24,4 @@ db.create_all()
 @app.errorhandler(404)
 def not_found(error):
     return render_template('404.html'), 404
+

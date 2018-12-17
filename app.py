@@ -30,23 +30,24 @@ def getOp(subject):
     ntwee = []
     # creating object of TwitterClient Class
     api = twittclient.TwitterClient()
+    # print(api)
     # calling function to get tweets
-    tweets = api.get_tweets(query = subject, count = 20)
-
+    tweets = api.get_tweets(query = subject, count = 100)
+    # print(tweets)
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
     # percentage of positive tweets
     print("Positive tweets percentage: {} %".format(100*len(ptweets)/len(tweets)))
-    session['pos'] = "Positive tweets percentage: {} %".format(100*len(ptweets)/len(tweets))
+    session['pos'] = round(100*len(ptweets)/len(tweets))
     # picking negative tweets from tweets
     ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
     # percentage of negative tweets
     print("Negative tweets percentage: {} %".format(100*len(ntweets)/len(tweets)))
-    session['neg'] = "Negative tweets percentage: {} %".format(100*len(ntweets)/len(tweets))
+    session['neg'] = round(100*len(ntweets)/len(tweets))
     # percentage of neutral tweets
     print("Neutral tweets percentage: {} % \
          ".format(100*(len(tweets) - len(ntweets) - len(ptweets))/len(tweets)))
-    session['nue'] = "Neutral tweets percentage: {} % ".format(100*(len(tweets) - len(ntweets) - len(ptweets))/len(tweets))
+    session['nue'] = round(100*(len(tweets) - len(ntweets) - len(ptweets))/len(tweets))
 
     # printing first 5 positive tweets
     print("\n\nPositive tweets:")
@@ -83,4 +84,4 @@ def test2():
         'test.html')
 
 if __name__ == "__main__":
-    app.run('0.0.0.0',5000,ssl_context=('/Users/phipax/cert/pyn.crt', '/Users/phipax/cert/pyn.key'))
+    app.run('0.0.0.0',5000)
