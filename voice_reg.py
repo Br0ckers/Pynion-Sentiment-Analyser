@@ -124,7 +124,7 @@ def listen_print_loop(responses):
             num_chars_printed = len(transcript)
 
         else:
-            magic = ("Result: " + transcript + overwrite_chars)
+            magic = (transcript + overwrite_chars)
             return magic
 
             # Exit recognition if any of the transcribed phrases could be
@@ -136,7 +136,7 @@ def listen_print_loop(responses):
             num_chars_printed = 0
 
 
-def main():
+def mymain():
     # See http://g.co/cloud/speech/docs/languages
     # for a list of supported languages.
     language_code = 'en-US'  # a BCP-47 language tag
@@ -167,4 +167,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    mymain()
