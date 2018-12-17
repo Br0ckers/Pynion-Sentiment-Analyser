@@ -4,6 +4,8 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 from app import app,twittclient
 from voice_reg import *
 
+app.debug = True
+
 class ReusableForm(Form):
     name = TextField('Subject:', default="")
 
