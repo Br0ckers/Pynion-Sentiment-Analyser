@@ -28,8 +28,7 @@ This Program will utilise a Twitter API and perform Sentiment analysis on Tweets
 1. ```virtualenv -p /usr/local/bin/python3 env && source env/bin/activate``` 
 2. ```chmod +x pynion_install.sh && ./pynion_install.sh```
 3. One time install (if not done already) ```python -m textblob.download_corpora```
-4. One time install (if not done already) ```brew install portaudio```
-5. To run ```$ ./app.py```
+4. To run ```$ ./app.py```
 
 # If you encounter error while running the app:
 
