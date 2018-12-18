@@ -24,16 +24,21 @@ This Program will utilise a Twitter API and perform Sentiment analysis on Tweets
 
 
 # Setting up your Python environment:
--------------------------------------
+
 1. ```virtualenv -p /usr/local/bin/python3 env && source env/bin/activate``` 
+
 2. ```chmod +x pynion_install.sh && ./pynion_install.sh```
+
 3. One time install (if not done already) ```python -m textblob.download_corpora```
+
 4. To run ```$ ./app.py```
 
-# If you encounter error while running the app:
+# Please read check for the following before running the app:
 
- - for matplotlib see **"To fix the matplotlib error if you used pip to install"** section
- - for google voice see **"Google Speech to Text Regonition API"** section
+ - for matplotlib see **"To fix the matplotlib error if you used pip to install"** section if you see errors related to matplotlib on the terminal
+
+ - for Google voice see **"Google Speech to Text Regonition API"** section (For Voice Instruction to work)
+
  - for Twitter see **"Twitter API Instructions (One Time Process)"** section
  
  - for NLTK/textblob
@@ -45,42 +50,50 @@ This Program will utilise a Twitter API and perform Sentiment analysis on Tweets
     and return back to the terminal where your step 7 failed and re-issue it.
     ```
 
-# Creating the database
------------------------
-**One time set-up:**
-  ```
-  python
-  >>> from app import init_db, db_session, db
-  >>> from app.models import Pynionquery
-  >>> init_db()
-  >>> q = Pynionquery("Trump")
-  >>> db_session.add(q)
-  >>> db_session.commit()
-  >>> Pynionquery.query.all()
-  ```
+ - Creating the database
+    **One time set-up:**
+      ```
+      python
+      >>> from app import init_db, db_session, db
+      >>> from app.models import Pynionquery
+      >>> init_db()
+      >>> q = Pynionquery("Trump")
+      >>> db_session.add(q)
+      >>> db_session.commit()
+      >>> Pynionquery.query.all()
+      ```
 
 # Google Speech to Text Regonition API
----------------------------------------
+
 - As an added feature to sentinent analyser we added voice search capability using an existing google API.
-- Create a google cloud account and create a account key in JSON format.
+
+- Create a google cloud account and create a account key in JSON format (Instructions to get JSON key: https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries)
+
 - include in your .bash_profile ```export GOOGLE_APPLICATION_CREDENTIALS="~/Projects/Pynion-Sentiment-Analyser/env/KEY.json"```
 
 
 # To Test & Check for coverage
-------------------------------
+
 1. ```pytest -v```
+
 2. ```coverage run /tests/test_basic.py```
+
 3. ```coverage report project/application path/*.py```
+
 4. ```coverage html project/users/*.py```
 
 # Twitter API Instructions (One Time Process)
----------------------------------------------
+
 1. Register with twitter for API keys from https://developer.twitter.com/en.html
+
 2. Ensure you use a new account and not personal twitter account
+
 3. Activate the account, register 'pynion' app (Only after registering an app you will be able to generate keys)
   i. You will be asked to provide justification etc
   ii. Keep github link handy
+
 4. Generate API and Access Token keys
+
 5. From mac terminal (ensure to do this from your virtual env)
 
 ```
@@ -98,7 +111,9 @@ This Program will utilise a Twitter API and perform Sentiment analysis on Tweets
   # close all terminals and start a new one and do  printenv to check
 
 ```
+
 6. In the terminal type ```printenv``` to see if the keys you created are listed. if not you have not created them under your virtualenv
+
 7. The app is available to be accessed within the network hence if you run the app get your ip address from terminal and access it like ```ifconfig | grep inet``` you will find your ip next next to netmask that you can share with colleagues on the same network.
 
 **To fix the matplotlib error if you used pip to install:**
