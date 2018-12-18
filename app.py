@@ -4,7 +4,7 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 from app import app,twittclient
 
 from voice_reg import *
-from app import db_session
+from app import db_session,db
 from app.models import Pynionquery
 from app import db_session
 from app.models import Pynionquery
@@ -26,6 +26,20 @@ def index():
         # flash('Your Subject is ' + subject)
         #print("adding to database")
         getOp(subject)
+        targetsearch = Pynionquery.query.filter_by(searchword = subject).first()
+        print("Search exists {}".format(targetsearch))
+        if (targetsearch):
+            print("found and updating")
+            db.session.query(Pynionquery).filter(Pynionquery.searchword == subject).update({Pynionquery.count: Pynionquery.count+1})
+            print("fired update query")
+            db.session.commit()
+            print("fired commit")
+
+        else:
+            print("not found and creating")
+            pynionquery = Pynionquery(subject)
+            db.session.add(pynionquery)
+            db.session.commit()
         return redirect('pynion')
     else:
         flash('To see what the twitterverse current opinion is, on a topic, enter it below')
@@ -86,17 +100,17 @@ def test2():
 @app.route("/history")
 def returnHistory():
     return render_template(
-        'history.html', history = Pynionquery.query.all())
+        'history.html', history = Pynionquery.query.order_by(Pynionquery.count).all())
 
-@app.after_request
-def add_header(response):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    response.headers['Cache-Control'] = 'public, max-age=0'
-    return response
+# @app.after_request
+# def add_header(response):
+#     """
+#     Add headers to both force latest IE rendering engine or Chrome Frame,
+#     and also to cache the rendered page for 10 minutes.
+#     """
+#     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+#     response.headers['Cache-Control'] = 'public, max-age=0'
+#     return response
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):

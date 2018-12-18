@@ -1,7 +1,6 @@
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
-# from flask_migrate import Migrate
 from flask import request, jsonify, Flask, flash, redirect, render_template, session, abort, url_for
 
 import numpy as np
@@ -20,7 +19,7 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 db = SQLAlchemy(app)
 db.create_all()
 
-engine = create_engine('sqlite:////tmp/test.db', convert_unicode=True)
+engine = create_engine('sqlite:///pyniondatabase.db', convert_unicode=True, echo = True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
@@ -32,7 +31,8 @@ def init_db():
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
     import app.models
-    Base.metadata.create_all(bind=engine)
+    Base.metadata.create_all(engine)
+
 
 # Sample HTTP error handling
 @app.errorhandler(404)
