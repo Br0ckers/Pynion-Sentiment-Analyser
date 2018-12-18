@@ -25,7 +25,7 @@ This Program will utilise a Twitter API and perform Sentiment analysis on Tweets
 
 # Setting up your Python environment:
 -------------------------------------
-1. ```chmod +x pynion_install.sh && ./pynioninstall```
+1. ```chmod +x pynion_install.sh && ./pynion_install.sh```
 2. One time install (if not done already) ```python -m textblob.download_corpora```
 3. One time install (if not done already) ```brew install portaudio```
 4. To run ```$ ./app.py```
