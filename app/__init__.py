@@ -2,6 +2,7 @@ from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask import request, jsonify, Flask, flash, redirect, render_template, session, abort, url_for
+from app import sentiwordcloud
 
 import numpy as np
 import pandas as pd
@@ -25,6 +26,17 @@ db_session = scoped_session(sessionmaker(autocommit=False,
                                          bind=engine))
 Base = declarative_base()
 Base.query = db_session.query_property()
+from app.models import Pynionquery
+
+history = Pynionquery.query.order_by(Pynionquery.count).all()
+print("in init {}".format(history))
+historyarray = []
+for record in history:
+    for i in range (record.count):
+        historyarray.append(record.searchword)
+print("in init historyarray {}".format(historyarray))
+sentiwordcloud.sentiWordCloud(historyarray,"apphistory")
+
 
 def init_db():
     # import all modules here that might define models so that
