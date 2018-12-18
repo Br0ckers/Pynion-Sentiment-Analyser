@@ -49,13 +49,10 @@ def index():
 
 def databaseOperations(subject):
     targetsearch = Pynionquery.query.filter_by(searchword = subject).first()
-    print("Search exists {}".format(targetsearch))
     if (targetsearch):
         print("found and updating")
         db.session.query(Pynionquery).filter(Pynionquery.searchword == subject).update({Pynionquery.count: Pynionquery.count+1})
-        print("fired update query")
         db.session.commit()
-        print("fired commit")
     else:
         print("not found and creating")
         pynionquery = Pynionquery(subject)
@@ -109,15 +106,15 @@ def returnHistory():
     return render_template(
         'history.html', history = Pynionquery.query.order_by(Pynionquery.count).all())
 
-# @app.after_request
-# def add_header(response):
-#     """
-#     Add headers to both force latest IE rendering engine or Chrome Frame,
-#     and also to cache the rendered page for 10 minutes.
-#     """
-#     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-#     response.headers['Cache-Control'] = 'public, max-age=0'
-#     return response
+# No caching at all for API endpoints.
+@app.after_request
+def add_header(response):
+    # response.cache_control.no_store = True
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '-1'
+    return response
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):

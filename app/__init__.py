@@ -15,6 +15,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config.from_object(Config)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 db = SQLAlchemy(app)
@@ -29,12 +30,10 @@ Base.query = db_session.query_property()
 from app.models import Pynionquery
 
 history = Pynionquery.query.order_by(Pynionquery.count).all()
-print("in init {}".format(history))
 historyarray = []
 for record in history:
     for i in range (record.count):
         historyarray.append(record.searchword)
-print("in init historyarray {}".format(historyarray))
 sentiwordcloud.sentiWordCloud(historyarray,"apphistory")
 
 
