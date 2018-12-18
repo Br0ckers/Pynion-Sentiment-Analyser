@@ -9,13 +9,9 @@ from app import sentiwordcloud
 class TwitterClient(object):
     def __init__(self):
         consumer_key = os.environ.get('API_KEY')
-        # print("consumer_key {}".format(consumer_key))
         consumer_secret = os.environ.get('API_SECRET_KEY')
-        # print("consumer_secret {}".format(consumer_secret))
         access_token = os.environ.get('ACCESS_TOKEN')
-        # print("access_token {}".format(access_token))
         access_token_secret = os.environ.get('ACCESS_TOKEN_SECRET')
-        # print("access_token_secret {}".format(access_token_secret))
         # attempt authentication
         try:
             # create OAuthHandler object
