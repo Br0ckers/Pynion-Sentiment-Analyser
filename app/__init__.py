@@ -29,12 +29,12 @@ Base.query = db_session.query_property()
 from app.models import Pynionquery
 
 history = Pynionquery.query.order_by(Pynionquery.count).all()
-print("in init {}".format(history))
+# print("in init {}".format(history))
 historyarray = []
 for record in history:
     for i in range (record.count):
         historyarray.append(record.searchword)
-print("in init historyarray {}".format(historyarray))
+# print("in init historyarray {}".format(historyarray))
 sentiwordcloud.sentiWordCloud(historyarray,"apphistory")
 
 

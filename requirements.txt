@@ -14,3 +14,4 @@ matplotlib
 pillow
 pyaudio
 google-cloud-speech
+pylint
