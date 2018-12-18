@@ -24,19 +24,18 @@ For database
 
 1. pip install flask-sqlalchemy
 2. pip install flask_migrate
-
+```
 Creating the database
-
+----------------------
 python
-from app import init_db,db_session,db
-from app.models import Pynionquery
-db.create_all()
-init_db()
-q = Pynionquery("Trump")
-db_session.add(q)
-db_session.commit()
-Pynionquery.query.all()
-
+>>> from app import init_db, db_session, db
+>>> from app.models import Pynionquery
+>>> init_db()
+>>> q = Pynionquery("Trump")
+>>> db_session.add(q)
+>>> db_session.commit()
+>>> Pynionquery.query.all()
+```
 # Google Speech to Text Regonition API
 
 - As an added feature to sentinent analyser we added voice search capability using an existing google API.

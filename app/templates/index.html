@@ -19,31 +19,22 @@
   </span>
   <ul class="timeline", style="list-style: none;">
     <li>
-
       <div class="bubble-container">
         <div class="bubble">
             {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            <ul>
-                                {% for message in messages %}
-             	<li>{{ message[1] }}</li>
-            {% endfor %}</ul>
-            {% endif %}
+              {% if messages %}
+                <ul>{% for message in messages %}
+             	    <li>{{ message[1] }}</li>
+                {% endfor %}</ul>
+              {% endif %}
             {% endwith %}
-            <form action="" method="post">
-                        {{ form.csrf }}
-            <div class="input text">
-                {{ form.name.label }} {{ form.name(size=50) }}
-                <input name='Text' type="submit" value="Submit">
-                <input name='Voice' type="submit" value="Voice Search" >
-             </div>
-            </form>
-
-
-
-
-
-
+        <form action="" method="post">{{ form.csrf }}
+          <div class="input text">
+              {{ form.name.label }} {{ form.name(size=50) }}
+              <input name='Text' type="submit" value="Submit">
+              <input name='Voice' type="submit" value="Voice Search" >
+          </div>
+        </form>
     </li>
   </ul>
 
