@@ -23,8 +23,6 @@ def index():
 
     if form.validate():
 # Save the comment here.
-        # flash('Your Subject is ' + subject)
-        #print("adding to database")
         getOp(subject)
         targetsearch = Pynionquery.query.filter_by(searchword = subject).first()
         print("Search exists {}".format(targetsearch))
