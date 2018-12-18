@@ -10,6 +10,12 @@
   <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
   <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <script>
+  function showImg(strShow, strHide) {
+  document.getElementById(strShow).style.display = 'block';
+  document.getElementById(strHide).style.display = 'none';
+}
+    </script>
 </head>
 
 <body>
@@ -19,7 +25,6 @@
   </span>
   <ul class="timeline", style="list-style: none;">
     <li>
-
       <div class="bubble-container">
         <div class="bubble">
             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -35,14 +40,10 @@
             <div class="input text">
                 {{ form.name.label }} {{ form.name(size=50) }}
                 <input name='Text' type="submit" value="Submit">
-                <input name='Voice' type="submit" value="Voice Search" >
+                <input name='Voice' type="submit" value="Voice Search" button onclick="showImg('a')"/>
              </div>
+
             </form>
-
-
-
-
-
 
     </li>
   </ul>
@@ -51,6 +52,10 @@
 </body>
 
 </html>
+
+<br>
+<br/>
+<img id="a" class="recording-image" src= "/static/recorder.gif" style="display:none" alt="a"/>
 
 
 

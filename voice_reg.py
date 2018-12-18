@@ -146,7 +146,7 @@ def mymain():
         encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
         sample_rate_hertz=RATE,
         max_alternatives=0,
-        language_code=language_code)
+        language_code=language_code,)
     streaming_config = types.StreamingRecognitionConfig(
         single_utterance=True,
         config=config,
