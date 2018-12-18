@@ -4,7 +4,7 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 from app import app,twittclient
 
 from voice_reg import *
-from app import db_session
+from app import db_session,db
 from app.models import Pynionquery
 from app import db_session
 from app.models import Pynionquery
@@ -19,32 +19,48 @@ def index():
     form = ReusableForm(request.form)
     # print(request.form['submit'])
     # print (form.errors)
-    print("Outside Post")
-    print(request.method)
+    # print("Outside Post")
+    # print(request.method)
     if request.method == 'POST':
+        subject=request.form['name']
+        print (subject)
+
         if 'Text' in request.form:
-            print("Text clicked")
+            # print("Text clicked")
             subject=request.form['name']
-            print (subject)
+            # print (subject)
             if form.validate():
                 if subject == "":
                     return redirect('/')
-                # possibly add if to return to index if subject is blank!
-        # Save the comment here.
-                # flash('Your Subject is ' + subject)
                 getOp(subject)
+                databaseOperations(subject)
                 return redirect('pynion')
         elif 'Voice' in request.form:
-            print("Voice Clicked")
+            # print("Voice Clicked")
             subject = mymain()
-            print(subject)
+            # print(subject)
             getOp(subject)
+            databaseOperations(subject)
             return redirect('pynion')
-        # print("Reached inside the post")
     else:
-        print("Outside Post In the else part")
+        # print("Outside Post In the else part")
         flash('To see what the twitterverse current opinion is, on a topic, enter it below')
         return render_template('index.html', form=form)
+
+def databaseOperations(subject):
+    targetsearch = Pynionquery.query.filter_by(searchword = subject).first()
+    print("Search exists {}".format(targetsearch))
+    if (targetsearch):
+        print("found and updating")
+        db.session.query(Pynionquery).filter(Pynionquery.searchword == subject).update({Pynionquery.count: Pynionquery.count+1})
+        print("fired update query")
+        db.session.commit()
+        print("fired commit")
+    else:
+        print("not found and creating")
+        pynionquery = Pynionquery(subject)
+        db.session.add(pynionquery)
+        db.session.commit()
 
 def getOp(subject):
     ptwee = []
@@ -58,29 +74,29 @@ def getOp(subject):
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
     # percentage of positive tweets
-    print("Positive tweets percentage: {} %".format(100*len(ptweets)/len(tweets)))
+    # print("Positive tweets percentage: {} %".format(100*len(ptweets)/len(tweets)))
     session['pos'] = round(100*len(ptweets)/len(tweets))
     # picking negative tweets from tweets
     ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
     # percentage of negative tweets
-    print("Negative tweets percentage: {} %".format(100*len(ntweets)/len(tweets)))
+    # print("Negative tweets percentage: {} %".format(100*len(ntweets)/len(tweets)))
     session['neg'] = round(100*len(ntweets)/len(tweets))
     # percentage of neutral tweets
-    print("Neutral tweets percentage: {} % \
-         ".format(100*(len(tweets) - len(ntweets) - len(ptweets))/len(tweets)))
+    # print("Neutral tweets percentage: {} % \
+        #  ".format(100*(len(tweets) - len(ntweets) - len(ptweets))/len(tweets)))
     session['nue'] = round(100*(len(tweets) - len(ntweets) - len(ptweets))/len(tweets))
 
     # printing first 5 positive tweets
-    print("\n\nPositive tweets:")
+    # print("\n\nPositive tweets:")
     for tweet in ptweets[:10]:
-        print(tweet['text'])
+        # print(tweet['text'])
         ptwee.append(tweet['text'])
     session['ptweet'] = tuple(ptwee)
 
     # printing first 5 negative tweets
-    print("\n\nNegative tweets:")
+    # print("\n\nNegative tweets:")
     for tweet in ntweets[:10]:
-        print(tweet['text'])
+        # print(tweet['text'])
         ntwee.append(tweet['text'])
     session['ntweet'] = tuple(ntwee)
 
@@ -91,17 +107,17 @@ def pynion_matter():
 @app.route("/history")
 def returnHistory():
     return render_template(
-        'history.html', history = Pynionquery.query.all())
+        'history.html', history = Pynionquery.query.order_by(Pynionquery.count).all())
 
-@app.after_request
-def add_header(response):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    response.headers['Cache-Control'] = 'public, max-age=0'
-    return response
+# @app.after_request
+# def add_header(response):
+#     """
+#     Add headers to both force latest IE rendering engine or Chrome Frame,
+#     and also to cache the rendered page for 10 minutes.
+#     """
+#     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+#     response.headers['Cache-Control'] = 'public, max-age=0'
+#     return response
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):

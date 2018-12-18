@@ -19,3 +19,5 @@ build/
 
 # Ignore DB
 app.db
+*.db
+*cloud*.png
