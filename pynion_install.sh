@@ -1,0 +1,1 @@
+virtualenv -p /usr/local/bin/python3 env && source env/bin/activate && chmod +x app.py && brew install portaudio && pip install -r requirements.txt
