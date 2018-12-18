@@ -1,57 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
 
-<!doctype html>
-<html lang="en">
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <span class="first">
+      	   <img class="logo-image" src= "/static/Pynion_logo3.jpg">
+        </span>
+        <ul class="timeline", style="list-style: none;">
+          <li>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Pynion</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
-  <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
-  <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-</head>
+            <div class="bubble-container">
+              <div class="bubble">
+                  {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                  <ul>
+                                      {% for message in messages %}
+                   	<li>{{ message[1] }}</li>
+                  {% endfor %}</ul>
+                  {% endif %}
+                  {% endwith %}
+                  <form action="" method="post">
+                              {{ form.csrf }}
+                  <div class="input text">
+                      {{ form.name.label }} {{ form.name(size=30) }}
+                      <input name='Text' type="submit" value="Submit">
+                      <input name='Voice' type="submit" value="Voice Search" >
+                  </div>
+                  </form>
 
-<body>
+              </div>
+            </div>
 
-  <span class="first" alt="Logo">
-            <img class="logo-image" src= "/static/Pynion_logo3.jpg">
-  </span>
-  <ul class="timeline", style="list-style: none;">
-    <li>
+          </li>
+        </ul>
 
-      <div class="bubble-container">
-        <div class="bubble">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            <ul>
-                                {% for message in messages %}
-             	<li>{{ message[1] }}</li>
-            {% endfor %}</ul>
-            {% endif %}
-            {% endwith %}
-            <form action="" method="post">
-                        {{ form.csrf }}
-            <div class="input text">
-                {{ form.name.label }} {{ form.name(size=50) }}
-                <input name='Text' type="submit" value="Submit">
-                <input name='Voice' type="submit" value="Voice Search" >
-             </div>
-            </form>
+      </div>
+      <div class="col-md-4">
+        <div class="content-section">
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
+        </div>
+      </div>
+    </div>
+  </main>
 
-
-
-
-
-
-    </li>
-  </ul>
-
-  </div>
-</body>
-
-</html>
-
+{% endblock content %}
 
 
 

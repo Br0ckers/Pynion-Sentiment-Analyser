@@ -1,9 +1,20 @@
-{% extends "base.html" %}
-{% block content %}
+<!doctype html>
+<html lang="en">
+<meta http-equiv="refresh" content="5" >
 
-<main role="main" class="container">
-  <div class="row">
-    <div class="col-lg-6">
+<head>
+  <meta charset="UTF-8">
+  <title>Search result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+</head>
+
+<body>
+
   <span class="first">
            <p> Below analysis uses NLTK based textblob library to obtain the sentiments from tweets.
             The code behind uses tweepy twitter API to authenticate to twitter using the dev API token.
@@ -26,7 +37,8 @@
         Neutral{{ session['nue'] }} %
         </li>
     </div>
-
+    <div id="piechart" class="bubble2">
+    </div>
     </div>
     <li>
      <div class="bubble-container">
@@ -57,18 +69,10 @@
         </li>
     {% endfor %}
 </ul>
-</div>
-<div class="col-md-6">
-  <div class="content-section">
-
-<div id="piechart" class="bubble2">
-</div>
-
 
 <div class="bubble-container">
     <div class="bubble">
-      <h5>Word Cloud for Search Results</h5>
-      <img src="/static/word_cloud.png">
+      <img src="/static/word_cloud.png" width=50%>
     </div>
 </div>
 
@@ -88,16 +92,12 @@ function drawChart() {
 ]);
 
   // Optional; add a title and set the width and height of the chart
-  var options = {'title':'Twitter Sentiments', 'width':450, 'height':400};
+  var options = {'title':'Twitter Sentiments', 'width':500, 'height':350};
 
   // Display the chart inside the <div> element with id="piechart"
   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
   chart.draw(data, options);
 }
 </script>
-</div>
-</div>
-</div>
-</main>
-
-{% endblock content %}
+</body>
+</html>
