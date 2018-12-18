@@ -1,0 +1,16 @@
+flask
+wtforms
+flask-sqlalchemy
+flask_migrate
+pytest
+coverage
+Flask-Testing
+tweepy
+textblob
+wordcloud
+pandas
+numpy
+matplotlib
+pillow
+pyaudio
+google-cloud-speech
