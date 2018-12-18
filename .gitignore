@@ -18,6 +18,8 @@ build/
 *.egg-info/
 
 # Ignore DB
+/app/pyniondatabase.db
 app.db
 *.db
 *cloud*.png
+/app/static/word_cloud.png
