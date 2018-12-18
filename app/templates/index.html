@@ -10,14 +10,12 @@
   <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
   <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-
 </head>
 
 <body>
 
-  <span class="first">
-			Pynion
-
+  <span class="first" alt="Logo">
+            <img class="logo-image" src= "/static/Pynion_logo3.jpg">
   </span>
   <ul class="timeline", style="list-style: none;">
     <li>
@@ -35,8 +33,14 @@
             <form action="" method="post">
                         {{ form.csrf }}
             <div class="input text">
-                            {{ form.name.label }} {{ form.name(size=50) }}  <input type="submit" value="Submit"> </div>
+                {{ form.name.label }} {{ form.name(size=50) }}
+                <input name='Text' type="submit" value="Submit">
+                <input name='Voice' type="submit" value="Voice Search" >
+             </div>
             </form>
+
+
+
 
 
 

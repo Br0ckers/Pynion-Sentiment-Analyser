@@ -1,26 +1,43 @@
 #! /usr/bin/env python
 from flask import request, jsonify, Flask, flash, redirect, render_template, session, abort, url_for
-from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField 
+from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from app import app,twittclient
+from voice_reg import *
+
+app.debug = True
 
 class ReusableForm(Form):
-    name = TextField('Subject:', validators=[validators.required()])
+    name = TextField('Subject:', default="")
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
     form = ReusableForm(request.form)
-
-    print (form.errors)
+    # print(request.form['submit'])
+    # print (form.errors)
+    print("Outside Post")
+    print(request.method)
     if request.method == 'POST':
-        subject=request.form['name']
-        print (subject)
-
-    if form.validate():
-# Save the comment here.
-        # flash('Your Subject is ' + subject)
-        getOp(subject)
-        return redirect('pynion')
+        if 'Text' in request.form:
+            print("Text clicked")
+            subject=request.form['name']
+            print (subject)
+            if form.validate():
+                if subject == "":
+                    return redirect('/')
+                # possibly add if to return to index if subject is blank!
+        # Save the comment here.
+                # flash('Your Subject is ' + subject)
+                getOp(subject)
+                return redirect('pynion')
+        elif 'Voice' in request.form:
+            print("Voice Clicked")
+            subject = mymain()
+            print(subject)
+            getOp(subject)
+            return redirect('pynion')
+        # print("Reached inside the post")
     else:
+        print("Outside Post In the else part")
         flash('To see what the twitterverse current opinion is, on a topic, enter it below')
         return render_template('index.html', form=form)
 
@@ -69,6 +86,14 @@ def pynion_matter():
 def test():
     return render_template(
         'result.html')
+
+@app.route("/vr")
+def vr():
+    vc = mymain()
+    # getOp(vc)
+    return render_template(
+        'vr.html')
+    # return redirect('pynion')
 
 @app.route("/test")
 def test2():

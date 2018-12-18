@@ -158,6 +158,13 @@ body {
     position: relative;
 }
 
+.logo-image {
+  display: block;
+  margin-left: auto;
+  margin-right: 70px;
+  width:250px;
+}
+
 .icon-twitter {
     font-size: 1.5em;
 }
