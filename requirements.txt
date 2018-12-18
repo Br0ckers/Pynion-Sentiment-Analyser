@@ -13,4 +13,4 @@ numpy
 matplotlib
 pillow
 pyaudio
---upgrade google-cloud-speech
+google-cloud-speech
