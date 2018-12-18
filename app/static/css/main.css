@@ -8,7 +8,7 @@ body {
     font-family: 'Quicksand';
     color: #7f8c8d;
     font-size: 14px;
-    background-color: #ededed;
+    background-color: #ffffff;
 }
 
 .bubble {
@@ -17,6 +17,22 @@ body {
     line-height: 1.4em;
     padding: 20px;
     background-color: #ecf0f1;
+    position: relative;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    text-align: left;
+    display: inline-block;
+}
+
+.bubble2 {
+    width: 100%;
+    padding: .5em 1em;
+    line-height: 1.4em;
+    padding: 20px;
+    background-color: #ffffff;
     position: relative;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;

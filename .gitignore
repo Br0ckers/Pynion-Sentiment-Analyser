@@ -5,6 +5,7 @@ venv/
 *.pyc
 __pycache__/
 .pytest_cache/
+/__pycache__
 
 instance/
 

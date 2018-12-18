@@ -1,8 +1,8 @@
 #from .context
-import twittclient
+from app.twittclient import TwitterClient
 import pytest
 
-api = twittclient.TwitterClient()
+api = TwitterClient()
 
 def test_get_tweets_returns_array():
     """

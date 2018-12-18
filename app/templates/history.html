@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<meta http-equiv="refresh" content="5" >
+<head>
+  <meta charset="UTF-8">
+  <title>Search result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+  <span class="first">
+           <p> Historical Searches:
+  </span>
+  <div class="bubble-container">
+    <div class="bubble">
+      <img src="/static/word_cloud_past_search.png" width=50%>
+    </div>
+  </div>
+      <ul>
+        <li> Search was:</li>
+        {% for historyrecord in history %}
+          <li>
+              <div class="bubble-container">
+                <div class="bubble">
+                    {{ historyrecord.searchword }}
+                </div>
+              </div>
+          </li>
+          <li>
+              <div class="bubble-container">
+                <div class="bubble">
+                    {{ historyrecord.count }}
+                </div>
+              </div>
+          </li>
+        {% endfor %}
+      </ul>
+</body>
+</html>

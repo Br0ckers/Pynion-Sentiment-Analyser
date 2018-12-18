@@ -3,8 +3,7 @@ import os
 sys.path.insert(0, os.path.abspath('..'))
 
 #from Pynion-Sentiment-Analyser import twittclient
-import twittclient
-
+# import ../app/twittclient
 
 # from mypkg import polarity
 # from mypkg import twitter_req
