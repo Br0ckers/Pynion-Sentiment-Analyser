@@ -18,4 +18,6 @@ build/
 *.egg-info/
 
 # Ignore DB
+app.db
 *.db
+*cloud*.png

@@ -22,6 +22,7 @@ def index():
         subject=request.form['name']
         print (subject)
 
+<<<<<<< HEAD
         if 'Text' in request.form:
             print("Text clicked")
             subject=request.form['name']
@@ -42,6 +43,19 @@ def index():
             getOp(subject)
             databaseOperations(subject)
             return redirect('pynion')
+=======
+    if form.validate():
+# Save the comment here.
+        getOp(subject)
+        targetsearch = Pynionquery.query.filter_by(searchword = subject).first()
+        print("Search exists {}".format(targetsearch))
+        if (targetsearch):
+            print("found and updating")
+            db.session.query(Pynionquery).filter(Pynionquery.searchword == subject).update({Pynionquery.count: Pynionquery.count+1})
+            print("fired update query")
+            db.session.commit()
+            print("fired commit")
+>>>>>>> fixed database
 
     else:
         print("Outside Post In the else part")
