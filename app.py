@@ -4,7 +4,7 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 from app import app,twittclient
 
 from voice_reg import *
-from app import db_session
+from app import db_session,db
 from app.models import Pynionquery
 from app import db_session
 from app.models import Pynionquery
@@ -22,6 +22,9 @@ def index():
     # print("Outside Post")
     # print(request.method)
     if request.method == 'POST':
+        subject=request.form['name']
+        print (subject)
+
         if 'Text' in request.form:
             # print("Text clicked")
             subject=request.form['name']
@@ -30,18 +33,34 @@ def index():
                 if subject == "":
                     return redirect('/')
                 getOp(subject)
+                databaseOperations(subject)
                 return redirect('pynion')
         elif 'Voice' in request.form:
             # print("Voice Clicked")
             subject = mymain()
             # print(subject)
             getOp(subject)
+            databaseOperations(subject)
             return redirect('pynion')
-        # print("Reached inside the post")
     else:
         # print("Outside Post In the else part")
         flash('To see what the twitterverse current opinion is, on a topic, enter it below')
         return render_template('index.html', form=form)
+
+def databaseOperations(subject):
+    targetsearch = Pynionquery.query.filter_by(searchword = subject).first()
+    print("Search exists {}".format(targetsearch))
+    if (targetsearch):
+        print("found and updating")
+        db.session.query(Pynionquery).filter(Pynionquery.searchword == subject).update({Pynionquery.count: Pynionquery.count+1})
+        print("fired update query")
+        db.session.commit()
+        print("fired commit")
+    else:
+        print("not found and creating")
+        pynionquery = Pynionquery(subject)
+        db.session.add(pynionquery)
+        db.session.commit()
 
 def getOp(subject):
     ptwee = []
@@ -88,17 +107,17 @@ def pynion_matter():
 @app.route("/history")
 def returnHistory():
     return render_template(
-        'history.html', history = Pynionquery.query.all())
+        'history.html', history = Pynionquery.query.order_by(Pynionquery.count).all())
 
-@app.after_request
-def add_header(response):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    response.headers['Cache-Control'] = 'public, max-age=0'
-    return response
+# @app.after_request
+# def add_header(response):
+#     """
+#     Add headers to both force latest IE rendering engine or Chrome Frame,
+#     and also to cache the rendered page for 10 minutes.
+#     """
+#     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+#     response.headers['Cache-Control'] = 'public, max-age=0'
+#     return response
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):

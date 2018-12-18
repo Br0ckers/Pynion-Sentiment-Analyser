@@ -5,8 +5,10 @@ DEBUG = True
 SQLALCHEMY_ECHO = True
 
 class Config(object):
+
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'app.db')
+         'sqlite:///' + os.path.join(basedir, 'pyniondatabase.db')
+    #SQLALCHEMY_DATABASE_URI = 'sqlite:///app/database/pyniondatabase.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DATABASE_CONNECT_OPTIONS = {}
     CSRF_ENABLED     = True

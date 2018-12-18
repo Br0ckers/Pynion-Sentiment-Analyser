@@ -8,5 +8,8 @@ def sentiWordCloud(tweetarray,subject):
     # Display the generated image:
     wordcloud = WordCloud(max_font_size=50, max_words=100, background_color="white").generate(text)
     # print("got the word cloud")
-    wordcloud.to_file("app/static/word_cloud.png")
+    if (subject == "apphistory"):
+        wordcloud.to_file("app/static/historical_word_cloud.png")
+    else:
+        wordcloud.to_file("app/static/word_cloud.png")
     # print("saving the file")

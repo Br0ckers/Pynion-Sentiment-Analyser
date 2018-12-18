@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-<meta http-equiv="refresh" content="5" >
 <head>
   <meta charset="UTF-8">
   <title>Search result</title>
@@ -16,7 +15,7 @@
   </span>
   <div class="bubble-container">
     <div class="bubble">
-      <img src="/static/word_cloud_past_search.png" width=50%>
+      <img src="/static/historical_word_cloud.png" width=50%>
     </div>
   </div>
       <ul>
@@ -25,17 +24,11 @@
           <li>
               <div class="bubble-container">
                 <div class="bubble">
-                    {{ historyrecord.searchword }}
+                    {{ historyrecord.searchword }} : {{ historyrecord.count }}
                 </div>
               </div>
           </li>
-          <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ historyrecord.count }}
-                </div>
-              </div>
-          </li>
+
         {% endfor %}
       </ul>
 </body>
