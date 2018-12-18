@@ -277,6 +277,14 @@ a.article-title:hover {
   height: 75px;
 }
 
+.recording-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75px;
+  height: 75px;
+}
+
 .icon-twitter {
     font-size: 1.5em;
 }

@@ -2,6 +2,12 @@
 {% block content %}
 
   <main role="main" class="container">
+    <script>
+   function showImg(strShow, strHide) {
+   document.getElementById(strShow).style.display = 'block';
+   document.getElementById(strHide).style.display = 'none';
+     }
+    </script>
     <div class="row">
       <div class="col-lg-8">
         <span class="first">
@@ -25,7 +31,7 @@
                   <div class="input text">
                       {{ form.name.label }} {{ form.name(size=30) }}
                       <input name='Text' type="submit" value="Submit">
-                      <input name='Voice' type="submit" value="Voice Search" >
+                      <input name='Voice' type="submit" value="Voice Search" button onclick="showImg('a')"/>
                   </div>
                   </form>
 
@@ -42,7 +48,11 @@
         </div>
       </div>
     </div>
+    <br>
+   <br/>
+   <img id="a" class="recording-image" src= "/static/recorder.gif" style="display:none" alt="a"/>
   </main>
+
 
 {% endblock content %}
 
