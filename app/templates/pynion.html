@@ -1,7 +1,6 @@
 
 <!doctype html>
 <html lang="en">
-<meta http-equiv="refresh" content="5" >
 
 <head>
   <meta charset="UTF-8">
@@ -28,24 +27,14 @@
     <div class="bubble-container">
     <b>Sentiment(in Percentage)</b>
     <div class="bubble">
-        <li>
-        Positive: {{ session['pos'] }} %
-        </li>
-        <li>
-        Negative: {{ session['neg'] }} %
-        </li>
-        <li>
-        Neutral{{ session['nue'] }} %
-        </li>
+        <li>Positive: {{ session['pos'] }} %</li>
+        <li>Negative: {{ session['neg'] }} %</li>
+        <li>Neutral : {{ session['nue'] }} %</li>
     </div>
-    <div id="piechart" class="bubble2">
+    <div id="piechart" class="bubble2"> </div>
     </div>
-    </div>
-    <li>
-     <div class="bubble-container">
-       Positive Tweets:
-     </div>
-    </li>
+
+    <li><div class="bubble-container">Positive Tweets:</div></li>
     {% for twee1 in session['ptweet'] %}
         <li>
             <div class="bubble-container">
