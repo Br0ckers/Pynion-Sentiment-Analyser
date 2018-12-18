@@ -9,13 +9,13 @@ from app import sentiwordcloud
 class TwitterClient(object):
     def __init__(self):
         consumer_key = os.environ.get('API_KEY')
-        print("consumer_key {}".format(consumer_key))
+        # print("consumer_key {}".format(consumer_key))
         consumer_secret = os.environ.get('API_SECRET_KEY')
-        print("consumer_secret {}".format(consumer_secret))
+        # print("consumer_secret {}".format(consumer_secret))
         access_token = os.environ.get('ACCESS_TOKEN')
-        print("access_token {}".format(access_token))
+        # print("access_token {}".format(access_token))
         access_token_secret = os.environ.get('ACCESS_TOKEN_SECRET')
-        print("access_token_secret {}".format(access_token_secret))
+        # print("access_token_secret {}".format(access_token_secret))
         # attempt authentication
         try:
             # create OAuthHandler object
@@ -57,11 +57,11 @@ class TwitterClient(object):
             tweets = []
             # print("Get_tweets called :",self,query,count)
             try:
-                print ("getting tweets")
+                # print ("getting tweets")
                 # call twitter api to fetch tweets
                 fetched_tweets = self.api.search(q = query, count = count)
                 # parsing tweets one by one
-                print ("got the tweets")
+                # print ("got the tweets")
                 #print (fetched_tweets)
 
                 cleanStrArray = []
@@ -93,34 +93,3 @@ class TwitterClient(object):
             except tweepy.TweepError as e:
                 # print error (if any)
                 print("Error : " + str(e))
-# def main():
-#     # creating object of TwitterClient Class
-#     api = TwitterClient()
-#     # calling function to get tweets
-#     tweets = api.get_tweets(query = 'Brexit', count = 20)
-
-#     # picking positive tweets from tweets
-#     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
-#     # percentage of positive tweets
-#     print("Positive tweets percentage: {} %".format(100*len(ptweets)/len(tweets)))
-#     # picking negative tweets from tweets
-#     ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
-#     # percentage of negative tweets
-#     print("Negative tweets percentage: {} %".format(100*len(ntweets)/len(tweets)))
-#     # percentage of neutral tweets
-#     print("Neutral tweets percentage: {} % \
-#          ".format(100*len(tweets) - len(ntweets) - len(ptweets)/len(tweets)))
-
-#     # printing first 5 positive tweets
-#     print("\n\nPositive tweets:")
-#     for tweet in ptweets[:10]:
-#         print(tweet['text'])
-
-#     # printing first 5 negative tweets
-#     print("\n\nNegative tweets:")
-#     for tweet in ntweets[:10]:
-#         print(tweet['text'])
-
-# if __name__ == "__main__":
-#     # calling main function
-#     main()
