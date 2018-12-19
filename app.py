@@ -17,18 +17,12 @@ class ReusableForm(Form):
 @app.route("/", methods=['GET', 'POST'])
 def index():
     form = ReusableForm(request.form)
-    # print(request.form['submit'])
-    # print (form.errors)
-    # print("Outside Post")
-    # print(request.method)
     if request.method == 'POST':
         subject=request.form['name']
         print (subject)
 
         if 'Text' in request.form:
-            # print("Text clicked")
             subject=request.form['name']
-            # print (subject)
             if form.validate():
                 if subject == "":
                     return redirect('/')
@@ -36,25 +30,22 @@ def index():
                 databaseOperations(subject)
                 return redirect('pynion')
         elif 'Voice' in request.form:
-            # print("Voice Clicked")
             subject = mymain()
-            # print(subject)
             getOp(subject)
             databaseOperations(subject)
             return redirect('pynion')
     else:
-        # print("Outside Post In the else part")
         flash('To see what the twitterverse current opinion is, on a topic, enter it below')
         return render_template('index.html', form=form)
 
 def databaseOperations(subject):
     targetsearch = Pynionquery.query.filter_by(searchword = subject).first()
     if (targetsearch):
-        print("found and updating")
+        print("db file found and updating....")
         db.session.query(Pynionquery).filter(Pynionquery.searchword == subject).update({Pynionquery.count: Pynionquery.count+1})
         db.session.commit()
     else:
-        print("not found and creating")
+        print("db file initialised....")
         pynionquery = Pynionquery(subject)
         db.session.add(pynionquery)
         db.session.commit()
@@ -64,10 +55,8 @@ def getOp(subject):
     ntwee = []
     # creating object of TwitterClient Class
     api = twittclient.TwitterClient()
-    # print(api)
     # calling function to get tweets
-    tweets = api.get_tweets(query = subject, count = 100)
-    # print(tweets)
+    tweets = api.get_tweets(query = subject, count = 500)
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
     # percentage of positive tweets
@@ -85,14 +74,14 @@ def getOp(subject):
 
     # printing first 5 positive tweets
     # print("\n\nPositive tweets:")
-    for tweet in ptweets[:10]:
+    for tweet in ptweets[:20]:
         # print(tweet['text'])
         ptwee.append(tweet['text'])
     session['ptweet'] = tuple(ptwee)
 
     # printing first 5 negative tweets
     # print("\n\nNegative tweets:")
-    for tweet in ntweets[:10]:
+    for tweet in ntweets[:20]:
         # print(tweet['text'])
         ntwee.append(tweet['text'])
     session['ntweet'] = tuple(ntwee)
