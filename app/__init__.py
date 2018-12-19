@@ -14,29 +14,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-app.config.from_object(Config)
-app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
-db = SQLAlchemy(app)
-db.create_all()
-
-engine = create_engine('sqlite:///pyniondatabase.db', convert_unicode=True, echo = True)
-db_session = scoped_session(sessionmaker(autocommit=False,
-                                         autoflush=False,
-                                         bind=engine))
-Base = declarative_base()
-Base.query = db_session.query_property()
-
-
-
 def init_db():
     # import all modules here that might define models so that
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
     import app.models
-    Base.metadata.create_all(engine)
     from app.models import Pynionquery
+    Base.metadata.create_all(engine)
 
     history = Pynionquery.query.order_by(Pynionquery.count).all()
     historyarray = []
@@ -44,6 +28,23 @@ def init_db():
         for i in range (record.count):
             historyarray.append(record.searchword)
     sentiwordcloud.sentiWordCloud(historyarray,"apphistory")
+
+
+app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app.config.from_object(Config)
+app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
+
+
+engine = create_engine('sqlite:///pyniondatabase.db', convert_unicode=True, echo = True)
+db_session = scoped_session(sessionmaker(autocommit=False,
+                                         autoflush=False,
+                                         bind=engine))
+# db = SQLAlchemy(app)
+# db.create_all()
+Base = declarative_base()
+Base.query = db_session.query_property()
+init_db()
 
 
 # Sample HTTP error handling
