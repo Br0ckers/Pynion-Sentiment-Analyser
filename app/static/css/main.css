@@ -16,6 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-btm {
+  display: block;
   overflow: hidden;
   position: fixed;
   bottom: 0;
@@ -147,7 +148,7 @@ a.article-title:hover {
     width: 100%;
     padding: .5em 1em;
     line-height: 1.4em;
-    padding: 5px;
+    padding: 10px;
     background-color: #ffffff;
     position: relative;
     -webkit-border-radius: 8px;
@@ -165,6 +166,15 @@ a.article-title:hover {
 
 .bubble-container {
     width: 90%;
+    display: block;
+    position: relative;
+    padding-left: 10px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.bubble-container2 {
+    width: 100%;
     display: block;
     position: relative;
     padding-left: 10px;

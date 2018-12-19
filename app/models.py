@@ -1,12 +1,13 @@
 from datetime import datetime
-from app import db, Base
+from app import  Base
+from sqlalchemy import Column, Integer, String, DateTime
 
 class Pynionquery(Base):
     __tablename__ = 'Pynionquery'
-    id = db.Column(db.Integer, primary_key=True)
-    searchword = db.Column(db.String(60), unique=True)
-    count = db.Column(db.Integer)
-    dateSearched = db.Column(db.DateTime, default = datetime.utcnow)
+    id = Column(Integer, primary_key=True)
+    searchword = Column(String(60), unique=True)
+    count = Column(Integer)
+    dateSearched = Column(DateTime, default = datetime.utcnow)
 
     def __repr__(self):
         return f"Query('{self.searchword}', {self.count} , {self.id})"

@@ -9,9 +9,9 @@
      }
     </script>
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-12">
         <span class="first">
-      	   <img class="logo-image" src= "/static/Pynion_logo3.jpg">
+      	   Pynion Search
         </span>
         <ul class="timeline", style="list-style: none;">
           <li>
@@ -29,7 +29,7 @@
                   <form action="" method="post">
                               {{ form.csrf }}
                   <div class="input text">
-                      {{ form.name.label }} {{ form.name(size=30) }}
+                      {{ form.name.label }} {{ form.name(size=50) }}
                       <input name='Text' type="submit" value="Submit">
                       <input name='Voice' type="submit" value="Voice Search" button onclick="showImg('a')"/>
                   </div>
@@ -42,11 +42,11 @@
         </ul>
 
       </div>
-      <div class="col-md-4">
+      <!-- <div class="col-md-4">
         <div class="content-section">
           <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
         </div>
-      </div>
+      </div> -->
     </div>
     <br>
    <br/>
