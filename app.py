@@ -19,7 +19,10 @@ def index():
     form = ReusableForm(request.form)
     if request.method == 'POST':
         subject=request.form['name']
-        print (subject)
+        # print(subject)
+        subject = subject.strip()
+        if (len(subject) == 0):
+            subject = '@makersacademy'
 
         if 'Text' in request.form:
             subject=request.form['name']
@@ -55,9 +58,7 @@ def getOp(subject):
     # creating object of TwitterClient Class
     api = twittclient.TwitterClient()
     # calling function to get tweets
-    subject = subject.strip()
-    if (len(subject) == 0):
-        subject = '@makersacademy'
+    
     session['searchtext'] = subject
     tweets = api.get_tweets(query = subject.strip(), count = 500)
     # picking positive tweets from tweets
