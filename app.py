@@ -24,7 +24,6 @@ def index():
             subject = '@makersacademy'
 
         if 'Text' in request.form:
-            subject=request.form['name']
             if form.validate():
                 if subject == "":
                     return redirect('/')
@@ -64,17 +63,23 @@ def getOp(subject):
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
     # percentage of positive tweets
     # print("Positive tweets percentage: {} %".format(100*len(ptweets)/len(tweets)))
-    session['pos'] = round(100*len(ptweets)/len(tweets))
+    if len(tweets) > 0:
+        session['pos'] = round(100*len(ptweets)/len(tweets))
+    else:
+        session['pos'] = 0
     # picking negative tweets from tweets
     ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
     # percentage of negative tweets
     # print("Negative tweets percentage: {} %".format(100*len(ntweets)/len(tweets)))
-    session['neg'] = round(100*len(ntweets)/len(tweets))
+    if len(tweets) > 0:
+        session['neg'] = round(100*len(ntweets)/len(tweets))
     # percentage of neutral tweets
     # print("Neutral tweets percentage: {} % \
         #  ".format(100*(len(tweets) - len(ntweets) - len(ptweets))/len(tweets)))
-    session['nue'] = round(100*(len(tweets) - len(ntweets) - len(ptweets))/len(tweets))
-
+        session['nue'] = round(100*(len(tweets) - len(ntweets) - len(ptweets))/len(tweets))
+    else:
+        session['neg'] = 0
+        session['nue'] = 0
     # printing first 5 positive tweets
     # print("\n\nPositive tweets:")
     for tweet in ptweets[:20]:
@@ -92,6 +97,10 @@ def getOp(subject):
 @app.route("/pynion")
 def pynion_matter():
     return render_template('pynion.html')
+
+@app.route("/about")
+def about():
+    return render_template('about.html')
 
 @app.route("/history")
 def returnHistory():

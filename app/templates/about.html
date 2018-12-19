@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <span class="first2">
+        <ul class="timeline", style="list-style: none;">
+        <li>
+          Pynion uses NLTK & Pattern.nm based Textblob Machine Learning library to obtain the sentiments from tweets.
+        </li>
+        <li>
+          The code behind uses tweepy twitter API to authenticate to twitter using the dev API token.
+        </li>
+        <li>
+          Tweets are parsed, links and special chars removed, passed to the textblob library that 
+          evaluates the sentiment based on training data provided. 
+        </li>
+        <li>
+          The training data consists of vocabulary of words categorized as Good words (Good, Great etc), Bad Words (Bad, Worst, etc) and Stop words 
+          (like I, You, Me, This etc). 
+        </li>
+        <li>
+          Extracted and curated tweets gets split by word gets assigned a label based on if it is a verb, adjective, adverb so on and so forth and gets compared against the training 
+          vocabulary and using NaiveBayes Algorithm produces a polarity - Positive, Negative or Neutral.
+        </li>
+        <li>
+          Cumulative of polarity across all tweets provides the sentiment score from a data set of 10-50 top, 
+          recent tweets.
+        </li>
+        </ul>
+      </span>
+    </div>
+  </div>
+</main>
+{% endblock content %}
