@@ -29,9 +29,33 @@
                   <form action="" method="post">
                               {{ form.csrf }}
                   <div class="input text">
-                      {{ form.name.label }} {{ form.name(size=50) }}
+
+                      <table width="500" border="0" cellpadding="10" align="left">
+
+                      <tr>
+                      <td align="left" valign="center">
+                      {{ form.name.label }}
+                      </td>
+
+                      <td align="left" valign="center">
+                      {{ form.name(size=30) }}
+                      </td>
+
+                      <td align="left" valign="center">
                       <input name='Text' type="submit" value="Submit">
+                      </td>
+
+                      <td align="left" valign="center">
                       <input name='Voice' type="submit" value="Voice Search" button onclick="showImg('a')"/>
+                      </td>
+
+                      <td align="center" valign="center">
+                      <img id="a" class="recording-image" src= "/static/recorder.gif" style="display:none" alt="a"/>
+                      </td>
+
+                      </tr>
+                      </table>
+
                   </div>
                   </form>
 
@@ -48,9 +72,7 @@
         </div>
       </div> -->
     </div>
-    <br>
-   <br/>
-   <img id="a" class="recording-image" src= "/static/recorder.gif" style="display:none" alt="a"/>
+
   </main>
 
 
