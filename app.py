@@ -37,8 +37,8 @@ def index():
             databaseOperations(subject)
             return redirect('pynion')
     else:
-        flash('To see what the twitterverse current opinion is, on a topic, enter it below')
-        return render_template('index.html', form=form)
+        flash('To analyse the sentiments of Twitter-verse on a topic, please enter it below')
+        return render_template('index.html', form=form,history = Pynionquery.query.order_by(Pynionquery.count.desc()).all()[:5])
 
 def databaseOperations(subject):
     targetsearch = Pynionquery.query.filter_by(searchword = subject).first()
