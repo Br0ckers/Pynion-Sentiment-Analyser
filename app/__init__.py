@@ -29,23 +29,18 @@ def init_db():
             historyarray.append(record.searchword)
     sentiwordcloud.sentiWordCloud(historyarray,"apphistory")
 
-
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config.from_object(Config)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
-
 engine = create_engine('sqlite:///pyniondatabase.db', convert_unicode=True, echo = True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
-# db = SQLAlchemy(app)
-# db.create_all()
 Base = declarative_base()
 Base.query = db_session.query_property()
 init_db()
-
 
 # Sample HTTP error handling
 @app.errorhandler(404)

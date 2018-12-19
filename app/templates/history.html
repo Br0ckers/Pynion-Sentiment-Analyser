@@ -10,25 +10,15 @@
     </div>
 
       <ul style="list-style: none;">
-        <li> Search was:</li>
+        <li> Top Searches:</li>
         {% for historyrecord in history %}
           <li>
               <div class="bubble-container">
                 <div class="bubble">
-                  <h4><a class="article-title" href="#">Searched Word: {{ historyrecord.searchword }}</a></h4>
-                  <p class="article-content">Number of times searched: {{ historyrecord.count }}</p>
-                  <!-- Word:  {{ historyrecord.searchword }}
-                  Count: {{ historyrecord.count }} -->
+                  <h4><a class="article-title" href="/"> {{ historyrecord.searchword }}</a> : {{ historyrecord.count }} </h4>
                 </div>
               </div>
           </li>
-          <!-- <li>
-              <div class="bubble-container">
-                <div class="bubble">
-                    {{ historyrecord.count }}
-                </div>
-              </div>
-          </li> -->
         {% endfor %}
       </ul>
   </div>
