@@ -4,7 +4,6 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 from app import app,twittclient
 
 from voice_reg import *
-#from app import db_session,db
 from app.models import Pynionquery
 from app import db_session
 from app.models import Pynionquery
@@ -58,7 +57,7 @@ def getOp(subject):
     # creating object of TwitterClient Class
     api = twittclient.TwitterClient()
     # calling function to get tweets
-    
+
     session['searchtext'] = subject
     tweets = api.get_tweets(query = subject.strip(), count = 500)
     # picking positive tweets from tweets
@@ -97,7 +96,8 @@ def pynion_matter():
 @app.route("/history")
 def returnHistory():
     return render_template(
-        'history.html', history = Pynionquery.query.order_by(Pynionquery.count).all())
+        #'history.html', history = Pynionquery.query.order_by(Pynionquery.count).limit(3).all())
+        'history.html', history = Pynionquery.query.order_by(Pynionquery.count.desc()).all()[:5])
 
 # No caching at all for API endpoints.
 @app.after_request
