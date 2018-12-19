@@ -4,7 +4,7 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 from app import app,twittclient
 
 from voice_reg import *
-from app import db_session,db
+#from app import db_session,db
 from app.models import Pynionquery
 from app import db_session
 from app.models import Pynionquery
@@ -41,14 +41,13 @@ def index():
 def databaseOperations(subject):
     targetsearch = Pynionquery.query.filter_by(searchword = subject).first()
     if (targetsearch):
-        print("db file found and updating....")
-        db.session.query(Pynionquery).filter(Pynionquery.searchword == subject).update({Pynionquery.count: Pynionquery.count+1})
-        db.session.commit()
+        print("found and updating")
+        db_session.query(Pynionquery).filter(Pynionquery.searchword == subject).update({Pynionquery.count: Pynionquery.count+1})
     else:
         print("db file initialised....")
         pynionquery = Pynionquery(subject)
-        db.session.add(pynionquery)
-        db.session.commit()
+        db_session.add(pynionquery)
+    db_session.commit()
 
 def getOp(subject):
     ptwee = []
