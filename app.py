@@ -56,7 +56,11 @@ def getOp(subject):
     # creating object of TwitterClient Class
     api = twittclient.TwitterClient()
     # calling function to get tweets
-    tweets = api.get_tweets(query = subject, count = 500)
+    subject = subject.strip()
+    if (len(subject) == 0):
+        subject = '@makersacademy'
+    session['searchtext'] = subject
+    tweets = api.get_tweets(query = subject.strip(), count = 500)
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
     # percentage of positive tweets
