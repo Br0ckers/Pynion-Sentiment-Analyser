@@ -33,7 +33,7 @@ This Program will utilise a Twitter API and perform Sentiment analysis on Tweets
 
 4. To run ```$ ./app.py```
 
-# Please read check for the following before running the app:
+# Please check for the following before running the app:
 
  - for matplotlib see **"To fix the matplotlib error if you used pip to install"** section if you see errors related to matplotlib on the terminal
 
