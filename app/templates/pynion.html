@@ -5,11 +5,7 @@
   <div class="row">
     <div class="col-lg-6">
   <span class="first">
-           <h6> Below analysis uses NLTK based textblob library to obtain the sentiments from tweets.
-            The code behind uses tweepy twitter API to authenticate to twitter using the dev API token.
-            Every tweet is parsed and cleaned, links and special char get removed before being passed to
-            the textblob library that evaluates the sentiment based on Positive, Negative & Neutral features created</h6>
-			Search Results For: {{ session['searchtext'] }}
+	Search Results For: {{ session['searchtext'] }}
   </span>
 
   <ul class="timeline", style="list-style: none;">
