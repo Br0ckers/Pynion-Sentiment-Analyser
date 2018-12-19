@@ -27,14 +27,7 @@ db_session = scoped_session(sessionmaker(autocommit=False,
                                          bind=engine))
 Base = declarative_base()
 Base.query = db_session.query_property()
-from app.models import Pynionquery
 
-history = Pynionquery.query.order_by(Pynionquery.count).all()
-historyarray = []
-for record in history:
-    for i in range (record.count):
-        historyarray.append(record.searchword)
-sentiwordcloud.sentiWordCloud(historyarray,"apphistory")
 
 
 def init_db():
@@ -43,6 +36,14 @@ def init_db():
     # you will have to import them first before calling init_db()
     import app.models
     Base.metadata.create_all(engine)
+    from app.models import Pynionquery
+
+    history = Pynionquery.query.order_by(Pynionquery.count).all()
+    historyarray = []
+    for record in history:
+        for i in range (record.count):
+            historyarray.append(record.searchword)
+    sentiwordcloud.sentiWordCloud(historyarray,"apphistory")
 
 
 # Sample HTTP error handling
