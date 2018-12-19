@@ -52,26 +52,47 @@
                       <td align="center" valign="center">
                       <img id="a" class="recording-image" src= "/static/recorder.gif" style="display:none" alt="a"/>
                       </td>
-
                       </tr>
                       </table>
-
                   </div>
                   </form>
-
               </div>
             </div>
-
           </li>
         </ul>
-
-      </div>
-      <!-- <div class="col-md-4">
-        <div class="content-section">
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
+        <span class="second">
+      	    See what others are searching for
+        </span>
+        <br>
+        <div class="row">
+          <div class="col-sm-6">
+          <div class="third" width="100%">Top searches</div>
         </div>
-      </div> -->
-    </div>
 
+          <div class="col-sm-6">
+          <div class="third">Now trending</div>
+        </div>
+        </div>
+<br>
+        <div class="row">
+          <div class="col-sm-6">
+            <ul style="list-style: none;">
+              <div class="bubble">
+              {% for historyrecord in history %}
+                <li>
+                        <h6><a class="article-title" href="/"> {{ historyrecord.searchword }}</a> : {{ historyrecord.count }} hits </h6>
+                </li>
+              {% endfor %}
+              <br><br><br><br><br><br>
+
+              </div>
+            </ul>
+          </div>
+          <div class="col-sm-6">
+            <div class="bubble">
+              <img src="/static/historical_word_cloud.png" width=100%>
+            </div>
+          </div>
+        </div>
   </main>
 {% endblock content %}
