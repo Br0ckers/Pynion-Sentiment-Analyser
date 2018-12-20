@@ -75,9 +75,9 @@
         </div>
 <br>
         <div class="row">
-          <div class="col-sm-6">
-            <ul style="list-style: none;">
-              <div class="bubble">
+          <div class="col-md-6">
+            <!-- <ul style="list-style: none;"> -->
+              <div class="bubble" style="list-style: none;" >
               {% for historyrecord in history %}
                 <li>
                         <h6><a class="article-title" href="/"> {{ historyrecord.searchword }}</a> : {{ historyrecord.count }} hits </h6>
@@ -86,9 +86,9 @@
               <br><br><br><br><br><br>
 
               </div>
-            </ul>
+            <!-- </ul> -->
           </div>
-          <div class="col-sm-6">
+          <div class="col-md-6">
             <div class="bubble">
               <img src="/static/historical_word_cloud.png" width=100%>
             </div>
